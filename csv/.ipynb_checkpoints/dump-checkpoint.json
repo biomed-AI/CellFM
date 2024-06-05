@@ -1,0 +1,15 @@
+{
+    "common_dump_settings": {
+        "dump_mode": 0,
+        "path": "/home/weizy/scret/dump",
+        "net_name": "Wrapper",
+        "kernels": ["matmul","mul"],
+        "iteration": "0",
+        "saved_data": "tensor",
+        "input_output": 0,
+        "support_device": [0,1,2,3,4,5,6,7],
+        "op_debug_mode": 0,
+        "file_format": "npy",
+        "op_debug_mode": 3
+    }
+}
