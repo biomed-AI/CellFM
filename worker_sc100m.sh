@@ -13,7 +13,7 @@ export MS_ENABLE_FORMAT_MODE=1
 export MS_HCCL_CM_INIT=1
 # export MINDSPORE_DUMP_CONFIG='/share-nfs/w50035851/code/msver/dump.json'
 data='cancer'
-start=$4
+start=$3
 dir=device$((start/8+1))
 rm -rf $dir
 mkdir $dir
@@ -23,9 +23,9 @@ rm -rf rank*
 rm *.log
 date
 echo "start training"
-ttl=24
+ttl=32
 num=8
-ip=$3
+ip=$2
 batch=4
 port=8448
 # 循环启动8个Worker训练进程
@@ -36,7 +36,7 @@ export MS_ROLE=MS_WORKER        # 设置启动的进程为MS_WORKER角色
 for((i=$((start+1));i<$((start+num));i++));
 do
     export MS_NODE_ID=$i                      # 设置进程id，可选
-    python ./1B_$5train.py --dist --data0 $1 --data1 $2 --batch $batch --data $data > worker_$i.log 2>&1 &
+    python ./1B_train.py --dist --data $1 --batch $batch --data $data > worker_$i.log 2>&1 &
 done
 export MS_NODE_ID=$start                      # 设置进程id，可选
-python ./1B_$5train.py --dist --data0 $1 --data1 $2 --batch $batch --data $data 
+python ./1B_train.py --dist --data $1 --batch $batch --data $data 

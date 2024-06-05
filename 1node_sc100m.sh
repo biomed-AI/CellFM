@@ -8,40 +8,33 @@ echo "It is better to use the absolute path."
 echo "==========================================="
 # export ASCEND_GLOBAL_LOG_LEVEL=2
 # export SLOG_PRINT_TO_STDOUT=2
-export MS_ENABLE_FORMAT_MODE=1
-export MS_HCCL_CM_INIT=1
-export HCCL_DETERMINISTIC=1
+# export MS_ENABLE_FORMAT_MODE=1
 # export MINDSPORE_DUMP_CONFIG='/share-nfs/w50035851/code/msver/dump.json'
-data='cancer'
-start=$4
-dir=device$((start/8+1))
-rm -rf log/fin*.txt
-rm -rf $dir
+# export ASCEND_RT_VISIBLE_DEVICES=4,5,6,7
+dir=device_$3_$4
+export HCCL_DETERMINISTIC=1
+# rm -rf $dir
 mkdir $dir
-cp ./*.py ./$dir
+cp ./*.py $dir
+# rm -rf /share-nfs/w50035851/analyse/hvg$3
+# rm -rf log/fin*.txt
 cd $dir
-rm -rf rank*
-rm *.log
-date
 echo "start training"
-ttl=32
-num=8
-ip=$3
-batch=4
+ttl=8
 port=8448
-# 循环启动8个Worker训练进程
 export MS_WORKER_NUM=$ttl          # 设置集群中Worker进程数量为8
-export MS_SCHED_HOST=61.47.2.$ip  # 设置Scheduler IP地址为本地环路地址
-# export MS_SCHED_HOST=127.0.0.1  # 设置Scheduler IP地址为本地环路地址
+export MS_SCHED_HOST=127.0.0.1  # 设置Scheduler IP地址为本地环路地址
 export MS_SCHED_PORT=$port       # 设置Scheduler端口
+# 循环启动8个Worker训练进程
 export MS_ROLE=MS_SCHED             # 设置启动的进程为MS_SCHED角色
-python ./1B_$5train.py --dist --data $1 --batch $batch --data $data > scheduler.log 2>&1 &
-for((i=1;i<$num;i++));
+python ./1B_$3.py --batch $1 --epoch $2 --dist --data $4 > scheduler.log 2>&1 &
+for((i=1;i<$ttl;i++));
 do
     export MS_ROLE=MS_WORKER        # 设置启动的进程为MS_WORKER角色
     export MS_NODE_ID=$i                      # 设置进程id，可选
-    python ./1B_train.py --dist --data $1 --batch $batch --data $data > worker_$i.log 2>&1 &
+    python ./1B_$3.py --batch $1 --epoch $2  --dist --data $4 > worker_$i.log 2>&1 &
+    
 done
 export MS_ROLE=MS_WORKER        # 设置启动的进程为MS_WORKER角色
 export MS_NODE_ID=0                      # 设置进程id，可选
-python ./1B_train.py --dist --data $1 --batch $batch --data $data 
+python ./1B_$3.py --batch $1 --epoch $2 --dist --data $4
