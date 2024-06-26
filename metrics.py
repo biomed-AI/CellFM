@@ -28,10 +28,11 @@ class BinaryACC(ms.train.Metric):
     def eval(self):
         return self.tp/self.ttl
 class annote_metric(ms.train.Metric):
-    def __init__(self,num_class):
+    def __init__(self,num_class,key=None):
         super().__init__()
         self.num_class=num_class
         self.eye=np.eye(num_class)
+        self.key=key or 'accuracy'
         self.clear()
     def clear(self):
         self.ttl=0
@@ -49,8 +50,8 @@ class annote_metric(ms.train.Metric):
         fp=err.sum(1)
         fn=err.sum(0)
         acc=tp.sum()/self.ttl
-        recall=np.nanmean(tp/(tp+fn))
-        precision=np.nanmean(tp/(tp+fp))
+        recall=np.nanmean(tp/np.maximum(tp+fn,0.1))
+        precision=np.nanmean(tp/np.maximum(tp+fp,0.1))
         f1=2*tp/(2*tp+fp+fn)
         m_f1=np.nanmean(f1)
         w_f1=np.nansum(f1*(num/self.ttl))
@@ -58,8 +59,7 @@ class annote_metric(ms.train.Metric):
             'accuracy':acc,'macro f1':m_f1,'weighted f1':w_f1,
             'macro recall':recall,'macro precision':precision,
         }
-        print(res)
-        return acc
+        return res[self.key]
 class F1(ms.train.Metric):
     def __init__(self,num_class,mode='macro'):
         super().__init__()
@@ -91,11 +91,12 @@ class F1(ms.train.Metric):
             return np.nansum(f1)
 
 class perturb_metric(ms.train.Metric):
-    def __init__(self,ctrl,de_idx,pert_map):
+    def __init__(self,ctrl,de_idx,pert_map,key=None):
         super().__init__()
         self.ctrl=ctrl.mean(0)
         self.de_idx=de_idx
         self.pert_map=pert_map
+        self.key=key or 'de_PCC2'
         self.clear()
     def clear(self):
         self.x={}
@@ -156,5 +157,4 @@ class perturb_metric(ms.train.Metric):
         res['de_PCC2']=np.array(de_pcc2).mean()
         res['de_PCC3']=np.array(de_pcc3).mean()
         res['de_R2']=np.array(de_r2).mean()
-        print(res)
-        return res['de_PCC2']
+        return res[self.key]
