@@ -16,7 +16,7 @@ The official implementation for "**CellFM**".
 ## Datasets
 
 
-We provide an easy access to the used datasets in the [synapse](https://www.synapse.org/#!Synapse:syn52559388/files/).
+We provide an easy access to the used datasets in the [synapse](https://www.synapse.org/#!Synapse:syn52616008/files/).
 
 
 
@@ -33,16 +33,19 @@ and then install the required packages below:
 
 - mindspore=2.2.10
 - scanpy=1.10
+#### optional
+- gears
+- torch
 
 ## Usage
 
 ### data preprocessing
 
-To run **CellFM**, we need to first preprocess the data in h5 or h5ad format. The preprocess pipeline for different downstream tasks can refer [process.ipynb](https://github.com/biomed-AI/CellFM/tutorials/process.ipynb). We recommond storing the processed datasets in [datasets](https://github.com/biomed-AI/CellFM/datasets/) directory.
+To run **CellFM**, we need to first preprocess the data in h5 or h5ad format. The preprocess pipeline for different downstream tasks can refer [process.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/process.ipynb). We recommond storing the processed datasets in [datasets](https://github.com/biomed-AI/CellFM/datasets/) directory.
 
 ### Train on new dataset
 
-We provided a script [train.py](https://github.com/biomed-AI/CellFM/train.py) for finetuning or training on new datasets. For example, we can train on HumanPBMC dataset with single NPU device by execute:
+We provided a script [train.py](https://github.com/biomed-AI/CellFM/blob/main/train.py) for finetuning or training on new datasets. For example, we can train on HumanPBMC dataset with single NPU device by execute:
 
 ~~~shell
 # Train with single device
@@ -68,16 +71,11 @@ bash 1node_train.sh train 4 5 HumanPBMC
 
 ### Tutorial 1: Cell Annotation
 
-See [CellAnnotation.ipynb](https://github.com/biomed-AI/CellFM/tutorials/CellAnnotation.ipynb).
+See [CellAnnotation.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/CellAnnotation.ipynb).
 
 ### Tutorial 2: Gene Function Prediction
 
-See [GeneFunction.ipynb](https://github.com/biomed-AI/CellFM/tutorials/GeneFunction.ipynb).
-
-### Tutorial 3: Gene Pertubation
-
-See [GenePertubation.ipynb](https://github.com/biomed-AI/CellFM/tutorials/GenePertubation.ipynb).
-
+See [GeneFunction.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/GeneFunction.ipynb).
 
 ## Citation
 
