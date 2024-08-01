@@ -16,7 +16,7 @@ The official implementation for "**CellFM**".
 ## Datasets
 
 
-We provide an easy access to the used datasets in the [synapse](https://www.synapse.org/#!Synapse:syn52616008/files/).
+We provide easy access to the used datasets in the [synapse](https://www.synapse.org/#!Synapse:syn52616008/files/).
 
 
 
@@ -25,8 +25,8 @@ We provide an easy access to the used datasets in the [synapse](https://www.syna
 To reproduce **CellFM**, we suggest first create a conda environment by:
 
 ~~~shell
-conda create -n cellFM python=3.9
-conda activate cellFM
+conda create -n CellFM python=3.9
+conda activate CellFM
 ~~~
 
 and then install the required packages below:
@@ -41,11 +41,11 @@ and then install the required packages below:
 
 ### data preprocessing
 
-To run **CellFM**, we need to first preprocess the data in h5 or h5ad format. The preprocess pipeline for different downstream tasks can refer [process.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/process.ipynb). We recommond storing the processed datasets in [datasets](https://github.com/biomed-AI/CellFM/datasets/) directory.
+To run **CellFM**, we need to first preprocess the data in h5 or h5ad format. The preprocessing pipeline for different downstream tasks can refer to [process.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/process.ipynb). We recommend storing the processed datasets in the [datasets](https://github.com/biomed-AI/CellFM/datasets/) directory.
 
-### Train on new dataset
+### Train on the new dataset
 
-We provided a script [train.py](https://github.com/biomed-AI/CellFM/blob/main/train.py) for finetuning or training on new datasets. For example, we can train on HumanPBMC dataset with single NPU device by execute:
+We provided a script [train.py](https://github.com/biomed-AI/CellFM/blob/main/train.py) for finetuning or training on new datasets. For example, we can train on the HumanPBMC dataset with a single NPU device by executing:
 
 ~~~shell
 # Train with single device
@@ -54,13 +54,13 @@ python train.py --data HumanPBMC --batch 4 --epoch 5 --load_pretrain [--fp16] [-
 
 - --data: dataset name. Note that the dataset should be located in /DIR/TO/WORKSPACE/datasets with h5 or h5ad format.
 - --batch: batch size.
-- --epoch: the number of training epoch.
+- --epoch: the number of training epochs.
 - --load_pretrain: load the pretrained weight of **CellFM**.
-- --fp16: unnecessary. Set training process under half-precision mode.
-- --lora: unnecessary. Using LoRA algorithm to update the weights using LORA_RANK as the hidden dimension of lora block, default 0 i.e. not use LoRA.
-- --workpath: unnecessary when train with single device. Set the **absolute directory** of work path, default the directory containing codes.
+- --fp16: unnecessary. Set the training process under half-precision mode.
+- --lora: unnecessary. Using the LoRA algorithm to update the weights using LORA_RANK as the hidden dimension of lora block, default 0 i.e. not use LoRA.
+- --workpath: unnecessary when training with a single device. Set the **absolute directory** of the work path and default the directory containing codes.
 
-We also provide a script to apply parallelly training within one node. For the same example, the command below works the same as the command above except it will works on 8 devices while each device handle an input with batch size=4.
+We also provide a script to apply parallel training within one node. For the same example, the command below works the same as the command above except it will works on 8 devices while each device handle an input with batch size=4.
 
 ```shell
 # Train parallelly in one node
