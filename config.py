@@ -20,3 +20,5 @@ class Config:
     pad_zero=True
     label=False
     ttl_step=1e5
+    ecs_threshold=0.8
+    ecs=False

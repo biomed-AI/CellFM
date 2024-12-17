@@ -10,13 +10,13 @@ The official implementation for "**CellFM**".
 
 * [Datasets](#Datasets)
 * [Installation](#Installation)
-* [Tutorial](#Tutorial)
+* [Tutorials](#Tutorials)
 * [Citation](#Citation)
 
 ## Datasets
 
 
-We provide easy access to the used datasets in the [synapse](https://www.synapse.org/#!Synapse:syn52616008/files/).
+We provide easy access to the used datasets in the [synapse](https://www.synapse.org/Synapse:syn63379664/files/).
 
 
 
@@ -33,15 +33,16 @@ and then install the required packages below:
 
 - mindspore=2.2.10
 - scanpy=1.10
-#### optional
+- scib=1.1.5
+### Optional
 - gears
 - torch
 
 ## Usage
 
-### data preprocessing
+### Data preprocessing
 
-To run **CellFM**, we need to first preprocess the data in h5 or h5ad format. The preprocessing pipeline for different downstream tasks can refer to [process.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/process.ipynb). We recommend storing the processed datasets in the [datasets](https://github.com/biomed-AI/CellFM/datasets/) directory.
+To run **CellFM**, we need to first preprocess the data in h5 or h5ad format. The preprocessing pipeline for different downstream tasks can refer to [process.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/process.ipynb). We recommend storing the processed datasets in the [Datasets](#Datasets).
 
 ### Train on the new dataset
 
@@ -67,15 +68,31 @@ We also provide a script to apply parallel training within one node. For the sam
 bash 1node_train.sh train 4 5 HumanPBMC
 ```
 
-### Tutorial
+## Tutorials
+
+We provide tutorials for CellFM applications.
 
 ### Tutorial 1: Cell Annotation
 
-See [CellAnnotation.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/CellAnnotation.ipynb).
+[CellAnnotation](https://github.com/biomed-AI/CellFM/blob/main/tutorials/CellAnnotation).
 
 ### Tutorial 2: Gene Function Prediction
 
-See [GeneFunction.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/GeneFunction.ipynb).
+
+[BinaryclassGeneFunction.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/BinaryclassGeneFunction.ipynb).  
+[MulticlassGeneFunction.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/MulticlassGeneFunction.ipynb).
+
+### Tutorial 3: Batch Effect Correction
+
+[BatchIntegration.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/BatchIntegration/BatchIntegration.ipynb).
+
+### Tutorial 4: Perturbation
+
+[GenePerturbation.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/Perturbation/GenePerturbation.ipynb).
+
+### Tutorial 5: Identifying Cell-type-specific lncRNAs 
+
+[IdentifyingCelltypelncRNAs.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/IdentifyingCelltypelncRNAs.ipynb).
 
 ## Citation
 

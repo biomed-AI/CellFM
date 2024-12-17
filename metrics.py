@@ -158,3 +158,16 @@ class perturb_metric(ms.train.Metric):
         res['de_PCC3']=np.array(de_pcc3).mean()
         res['de_R2']=np.array(de_r2).mean()
         return res[self.key]
+    
+class eval_batch(ms.train.Metric):
+    def __init__(self):
+        super().__init__()
+        self.loss = 0
+        self.clear()
+    def clear(self):
+        self.loss = 0
+    def update(self, mse):
+        self.loss += mse
+    def eval(self):
+        print('val_loss: ',self.loss)
+        return self.loss

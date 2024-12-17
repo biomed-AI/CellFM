@@ -220,3 +220,47 @@ def set_weight_decay(params,weight_decay=1e-5):
         {'order_params': params}
     ]
     return group_params
+
+def eval_scib_metrics(
+    adata,
+    batch_key: str = "str_batch",
+    label_key: str = "celltype",
+    embed_key: str = "X"
+):
+    import scib
+
+    results = scib.metrics.metrics(
+        adata,
+        adata_int=adata,
+        batch_key=batch_key,
+        label_key=label_key,
+        embed=embed_key,
+        isolated_labels_asw_=False,
+        silhouette_=True,
+        hvg_score_=False,
+        graph_conn_=True,
+        pcr_=True,
+        isolated_labels_f1_=False,
+        trajectory_=False,
+        nmi_=True,  # use the clustering, bias to the best matching
+        ari_=True,  # use the clustering, bias to the best matching
+        cell_cycle_=False,
+        kBET_=False,  # kBET return nan sometimes, need to examine
+        ilisi_=False,
+        clisi_=False,
+    )
+
+    result_dict = results[0].to_dict()
+    
+    result_dict["avg_bio"] = np.mean(
+        [
+            result_dict["NMI_cluster/label"],
+            result_dict["ARI_cluster/label"],
+            result_dict["ASW_label"],
+        ]
+    )
+
+    # remove nan value in result_dict
+    result_dict = {k: v for k, v in result_dict.items() if not np.isnan(v)}
+
+    return result_dict
