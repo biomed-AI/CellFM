@@ -70,7 +70,7 @@ bash 1node_train.sh train 4 5 HumanPBMC
 
 ## Tutorials
 
-We provide tutorials for CellFM applications.
+We provide tutorials for CellFM applications. Checkpoints of our model are stored in [huggingface](https://huggingface.co/ShangguanNingyuan/CellFM).
 
 ### Tutorial 1: Cell Annotation
 
