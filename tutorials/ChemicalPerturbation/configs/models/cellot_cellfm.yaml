@@ -1,0 +1,27 @@
+model:
+  name: cellot
+  hidden_units: [512, 512, 512, 512]
+  latent_dim: 1536
+  softplus_W_kernels: false
+
+  g:
+    fnorm_penalty: 1
+
+  kernel_init_fxn:
+    a: -0.05
+    b: 0.05
+    name: uniform
+
+optim:
+  optimizer: Adam
+  lr: 0.0001
+  beta1: 0.5
+  beta2: 0.9
+  weight_decay: 0
+
+training:
+  n_iters: 100000
+  n_inner_iters: 10
+  cache_freq: 1000
+  eval_freq: 250
+  logs_freq: 50

@@ -1,0 +1,16 @@
+setuptools==49.6.0
+numpy==1.19.5
+matplotlib==3.3.3
+scanpy==1.8.1
+jupyterlab==3.0.16
+ipython==7.18.1
+anndata==0.7.6
+ml-collections==0.1.0
+matplotlib==3.3.3
+pandas==1.2.5
+scipy==1.8.1
+scikit-learn==1.1.1
+seaborn==0.11.1
+sphinx==4.2.0
+sphinx-press-theme==0.8.0
+torch==1.11.0
