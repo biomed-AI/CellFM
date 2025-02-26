@@ -171,3 +171,24 @@ class eval_batch(ms.train.Metric):
     def eval(self):
         print('val_loss: ',self.loss)
         return self.loss
+
+class mse_metric(ms.train.Metric):
+    def __init__(self, seq_len):
+        self.seq_len = seq_len
+        self.clear()
+    def clear(self):
+        self.X = np.zeros(self.seq_len)
+        self.Y = np.zeros(self.seq_len)
+        self.l = 0
+    def update(self, pred, label):
+        pred=pred.asnumpy().reshape(-1)
+        label=label.asnumpy().reshape(-1)
+        self.X += pred
+        self.Y += label
+        self.l += 1
+    def eval(self):
+        self.X = self.X / self.l
+        self.Y = self.Y / self.l
+        l2 = np.linalg.norm(self.X - self.Y)
+        print('L2:', l2)
+        return l2
