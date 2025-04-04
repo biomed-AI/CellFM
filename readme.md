@@ -16,13 +16,13 @@ The official implementation for "**CellFM**".
 ## Datasets
 
 
-We provide easy access to the used datasets in the [synapse](https://www.synapse.org/Synapse:syn63379664/files/).
+We provide easy access to the used datasets in the [Zenodo](https://zenodo.org/records/15138665).
 
 
 
 ## Installation
 
-To reproduce **CellFM**, we suggest first create a conda environment by:
+To reproduce **CellFM**, we suggest first creating a conda environment by:
 
 ~~~shell
 conda create -n CellFM python=3.9
@@ -42,11 +42,11 @@ and then install the required packages below:
 
 ### Data preprocessing
 
-To run **CellFM**, we need to first preprocess the data in h5 or h5ad format. The preprocessing pipeline for different downstream tasks can refer to [process.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/process.ipynb). We recommend storing the processed datasets in the [Datasets](#Datasets).
+To run **CellFM**, we need to preprocess the data in h5 or h5ad format. The preprocessing pipeline for different downstream tasks can refer to [process.ipynb](https://github.com/biomed-AI/CellFM/blob/main/tutorials/process.ipynb). We recommend storing the processed datasets in the [Datasets](#Datasets).
 
 ### Train on the new dataset
 
-We provided a script [train.py](https://github.com/biomed-AI/CellFM/blob/main/train.py) for finetuning or training on new datasets. For example, we can train on the HumanPBMC dataset with a single NPU device by executing:
+We provided a script [train.py](https://github.com/biomed-AI/CellFM/blob/main/train.py) for fine-tuning or training on new datasets. For example, we can train on the HumanPBMC dataset with a single NPU device by executing:
 
 ~~~shell
 # Train with single device
@@ -57,11 +57,11 @@ python train.py --data HumanPBMC --batch 4 --epoch 5 --load_pretrain [--fp16] [-
 - --batch: batch size.
 - --epoch: the number of training epochs.
 - --load_pretrain: load the pretrained weight of **CellFM**.
-- --fp16: unnecessary. Set the training process under half-precision mode.
-- --lora: unnecessary. Using the LoRA algorithm to update the weights using LORA_RANK as the hidden dimension of lora block, default 0 i.e. not use LoRA.
+- --fp16: unnecessary. Set the training process to half-precision mode.
+- --lora: unnecessary. Using the LoRA algorithm to update the weights using LORA_RANK as the hidden dimension of lora block, default 0 i.e., not use LoRA.
 - --workpath: unnecessary when training with a single device. Set the **absolute directory** of the work path and default the directory containing codes.
 
-We also provide a script to apply parallel training within one node. For the same example, the command below works the same as the command above except it will works on 8 devices while each device handle an input with batch size=4.
+We also provide a script to apply parallel training within one node. For the same example, the command below works the same as the command above, except it will works on 8 devices while each device handle an input with batch size=4.
 
 ```shell
 # Train parallelly in one node
