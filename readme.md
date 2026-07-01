@@ -3,6 +3,9 @@ We have released a **PyTorch version** of [CellFM-torch](https://github.com/biom
 
 In the future, we also plan to **retrain CellFM directly in PyTorch** on the original datasets — stay tuned for exciting updates!
 
+### Community Projects
+**[nano-CellFM](https://github.com/huynguyen250896/nano-CellFM)** — A lightweight, faithful, and easy-to-read reimplementation of CellFM for rapid inference, benchmarking, and research prototyping.
+
 ![](figures/model.png)
 
 <font size=4> We propose a single-cell foundation model, CellFM.  </font> <br><br>
