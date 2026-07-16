@@ -1,8 +1,3 @@
-### 🚀 Update  
-We have released a **PyTorch version** of [CellFM-torch](https://github.com/biomed-AI/CellFM-torch), which is fully compatible with the original pretrained weights. Although we haven’t conducted a systematic benchmark yet, we warmly welcome you to try it out. If you encounter any issues, feel free to share feedback or start a discussion with us.  
-
-In the future, we also plan to **retrain CellFM directly in PyTorch** on the original datasets — stay tuned for exciting updates!
-
 ![](figures/model.png)
 
 <font size=4> We propose a single-cell foundation model, CellFM.  </font> <br><br>
