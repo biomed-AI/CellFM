@@ -107,5 +107,5 @@ If you find our codes useful, please consider citing our work:
 }
 ~~~
 
-## Correction Statement
+## Correction Statement for CellFM
 In the original version of this article, we identified several errors in the performance results. Specifically, the average performance values in Fig. 4e, Fig. 4f, and Supplementary Fig. S15 were incorrectly calculated. Two baseline methods in Supplementary Fig. S19 were incorrectly evaluated on two datasets due to a bug in the evaluation script. After correction, the conclusions of this article remain unchanged (the outperformance of our method is mostly strengthened). Please find the detailed corrections in AuthorCorrection.pdf.
