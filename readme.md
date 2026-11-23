@@ -96,7 +96,7 @@ We provide tutorials for CellFM applications. Checkpoints of our model are store
 
 ## Citation
 
-If you find our codes useful, please consider citing our work:
+If you find our code useful, please consider citing our work:
 
 ~~~bibtex
 @article{CellFM,
